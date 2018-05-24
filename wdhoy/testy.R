@@ -6,11 +6,18 @@ library(readxl)
 library(writexl)
 
 excel_sheets('yoy.xlsx')
+excel_sheets('financial_cleaned.xlsx')
 
 input_sheet_1 = read_excel("yoy.xlsx", sheet=1, col_names = TRUE)
+input_sheet_2 = read_excel("financial_cleaned.xlsx", sheet=1, col_names = TRUE)
+
 input_sheet_1
-input_sheet_1[21,6]  # read row1 col1?
-input_sheet_1[1,1]  # read  row1 col1?
+input_sheet_2
+
+#input_sheet_1[21,6]  # read row1 col1?
+#nput_sheet_1[1,1]  # read  row1 col1?
+#yearly_used_car_revenue = input_sheet_2[c(5:7),c(7)]
+
 
 
 # the revenue data
@@ -34,12 +41,27 @@ x <- as.yearqtr(2011 + seq(0, 23)/3)
 format(x, "%Y Quarter %q")
 
 
-# makes a dataframe of 1 col with time
-testset = as.vector(t(total_unit_sales_used_cars))
-test = as.data.frame(testset)
-rownames(test) <- x
+every_three = c()
 
+for (i in 0:112) {
+  if (i%%3==0) {
+    every_three <- c(every_three, 5+i)
+  }
+}
+
+#every_three = as.data.frame(b)
+every_3 = input_sheet_2[7,every_three]  # read row1 col1?
+reduced_e3 = as.vector(t(every_3))
+e3 = as.data.frame(reduced_e3)
+
+# makes a dataframe of 1 col with time
+reduced_used_cars = as.vector(t(total_unit_sales_used_cars))
+used_cars = as.data.frame(reduced_used_cars)
+rownames(used_cars) <- x
 
 
 #avg_price_used_cars = input_sheet_1[c(71:78),c(4:6)]
-#avg_price_used_cars
+#avg_used_price = as.vector(t(avg_price_used_cars))
+#prices = as.data.frame(avg_used_price)
+#used_cars$avg_used_price <- prices
+#rownames(used_cars$avg_used_price) <- "a"
