@@ -7,4 +7,8 @@ library(writexl)
 
 excel_sheets('sample.xlsx')
 
-input_sheet_1 read_excel("sample.xlsx", sheet=1, col_names = TRUE)
+input_sheet_1 = read_excel("sample.xlsx", sheet=1, col_names = TRUE)
+input_sheet_1
+input_sheet_1[1,1]  # read col1 row1?
+
+
