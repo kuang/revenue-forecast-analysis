@@ -27,3 +27,7 @@ input_sheet_1[1,1]  # read  row1 col1?
 # col2 quarter 2, year 2011
 total_unit_sales_used_cars = input_sheet_1[c(14:21),c(4:6)]
 total_unit_sales_used_cars
+
+
+avg_price_used_cars = input_sheet_1[c(71:78),c(4:6)]
+avg_price_used_cars
