@@ -52,8 +52,7 @@ reduced_avg_price_used_cars = as.vector(t(avg_price_used_cars))
 prices = as.data.frame(reduced_avg_price_used_cars)
 rownames(prices) <- x
 
-#puts used cars and used cars price together
-used_cars$size <- prices
+
 
 
 every_three = c()
@@ -72,12 +71,11 @@ e3 = as.data.frame(revenue)
 
 # makes a dataframe of 1 col with time
 reduced_used_cars = as.vector(t(total_unit_sales_used_cars))
+table <- data.frame(used_cars)
 used_cars = as.data.frame(reduced_used_cars)
 rownames(used_cars) <- x
 
+#puts used cars and used cars price together
+table$size <- prices
 
-#avg_price_used_cars = input_sheet_1[c(71:78),c(4:6)]
-#avg_used_price = as.vector(t(avg_price_used_cars))
-#prices = as.data.frame(avg_used_price)
-#used_cars$avg_used_price <- prices
-#rownames(used_cars$avg_used_price) <- "a"
+
