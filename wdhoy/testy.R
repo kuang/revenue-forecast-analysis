@@ -42,6 +42,19 @@ format(x, "%Y Quarter %q")
 
 
 every_three = c()
+# makes a dataframe of 1 col with time
+reduced_used_cars = as.vector(t(total_unit_sales_used_cars))
+used_cars = as.data.frame(reduced_used_cars)
+rownames(used_cars) <- x
+
+
+avg_price_used_cars = input_sheet_1[c(71:78),c(4:6)]
+reduced_avg_price_used_cars = as.vector(t(avg_price_used_cars))
+prices = as.data.frame(reduced_avg_price_used_cars)
+rownames(prices) <- x
+
+#puts used cars and used cars price together
+used_cars$size <- prices
 
 for (i in 0:112) {
   if (i%%3==0) {
