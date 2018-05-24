@@ -29,22 +29,17 @@ total_unit_sales_used_cars = input_sheet_1[c(14:21),c(4:6)]
 total_unit_sales_used_cars
 
 
+# zoo sequence to name year/quarter
+x <- as.yearqtr(2011 + seq(0, 23)/3)
+format(x, "%Y Quarter %q")
+
+
 # makes a dataframe of 1 col with time
 testset = as.vector(t(total_unit_sales_used_cars))
-test = as.data.frame(testset, row.names = NULL)
+test = as.data.frame(testset)
+rownames(test) <- x
 
 
-nrow(testset)
 
-#for (row in 1:NROW(testset)) {
- # price <- testset[row, "apple"]
-  #date  <- stock[row, "date"]
-  
-  #if(price > 117) {
-   # print(paste("On", date, 
-  #              "the stock price was", price))
-  #}
-  
-}
 #avg_price_used_cars = input_sheet_1[c(71:78),c(4:6)]
 #avg_price_used_cars
