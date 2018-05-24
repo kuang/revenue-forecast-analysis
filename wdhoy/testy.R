@@ -41,7 +41,6 @@ x <- as.yearqtr(2011 + seq(0, 23)/3)
 format(x, "%Y Quarter %q")
 
 
-every_three = c()
 # makes a dataframe of 1 col with time
 reduced_used_cars = as.vector(t(total_unit_sales_used_cars))
 used_cars = as.data.frame(reduced_used_cars)
@@ -56,16 +55,20 @@ rownames(prices) <- x
 #puts used cars and used cars price together
 used_cars$size <- prices
 
-for (i in 0:112) {
+
+every_three = c()
+for (i in 0:90) {
   if (i%%3==0) {
     every_three <- c(every_three, 5+i)
   }
 }
 
-#every_three = as.data.frame(b)
 every_3 = input_sheet_2[7,every_three]  # read row1 col1?
-reduced_e3 = as.vector(t(every_3))
-e3 = as.data.frame(reduced_e3)
+
+
+revenue = as.vector(t(every_3))
+e3 = as.data.frame(revenue)
+
 
 # makes a dataframe of 1 col with time
 reduced_used_cars = as.vector(t(total_unit_sales_used_cars))
