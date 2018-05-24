@@ -27,9 +27,21 @@ input_sheet_1[1,1]  # read  row1 col1?
 # col2 quarter 2, year 2011
 total_unit_sales_used_cars = input_sheet_1[c(14:21),c(4:6)]
 total_unit_sales_used_cars
-colnames(total_unit_sales_used_cars) = c("2011Q1", "2011Q2", "2011Q2")
-total_unit_sales_used_cars
+testset = as.vector(t(total_unit_sales_used_cars))
+colnames(testset) = c("num_cars")
 
 
-avg_price_used_cars = input_sheet_1[c(71:78),c(4:6)]
-avg_price_used_cars
+NROW(testset)
+
+for (row in 1:NROW(testset)) {
+  price <- testset[row, "apple"]
+  #date  <- stock[row, "date"]
+  
+  #if(price > 117) {
+   # print(paste("On", date, 
+  #              "the stock price was", price))
+  #}
+  
+}
+#avg_price_used_cars = input_sheet_1[c(71:78),c(4:6)]
+#avg_price_used_cars
