@@ -78,4 +78,5 @@ rownames(used_cars) <- x
 #puts used cars and used cars price together
 table$size <- prices
 
-
+#multiply
+table <- transform(table, Prod= reduced_used_cars * reduced_avg_price_used_cars)
