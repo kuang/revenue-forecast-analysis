@@ -4,6 +4,7 @@
 library(readxl)
 # allows writing of excel sheets
 library(writexl)
+library(zoo)
 
 excel_sheets('yoy.xlsx')
 excel_sheets('financial_cleaned.xlsx')
@@ -56,7 +57,7 @@ rownames(prices) <- x
 
 
 every_three = c()
-for (i in 0:90) {
+for (i in 0:69) {
   if (i%%3==0) {
     every_three <- c(every_three, 5+i)
   }
@@ -71,7 +72,7 @@ e3 = as.data.frame(revenue)
 
 # makes a dataframe of 1 col with time
 reduced_used_cars = as.vector(t(total_unit_sales_used_cars))
-table <- data.frame(used_cars)
+table <- as.data.frame(used_cars)
 used_cars = as.data.frame(reduced_used_cars)
 rownames(used_cars) <- x
 
@@ -79,4 +80,6 @@ rownames(used_cars) <- x
 table$size <- prices
 
 #multiply
-table <- transform(table, Prod= reduced_used_cars * reduced_avg_price_used_cars)
+table$predicted_used_car_revenue <- as.numeric(reduced_used_cars) * as.numeric(reduced_avg_price_used_cars)
+table$actual_used_car_revenue <- as.numeric(revenue)*as.numeric(1000)
+
