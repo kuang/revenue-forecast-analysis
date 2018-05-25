@@ -26,32 +26,26 @@ for (i in 0:90) {
   }
 }
 
-rev_used = as.numeric(t(input_sheet[7,quarterly_indexes]))
-rev_wholesale = as.numeric(t(input_sheet[8,quarterly_indexes]))
-rev_other = as.numeric(t(input_sheet[13,quarterly_indexes]))
-rev_total = as.numeric(t(input_sheet[15,quarterly_indexes]))
+profit_total = as.numeric(t(input_sheet[24,quarterly_indexes]))
 
-rev_total <- as.data.frame((rev_total))
-
+profit_total <- as.data.frame((profit_total))
 data <- data.frame(quarters, rev_used, rev_wholesale, rev_other, new_stores["nstores"], rev_total)
-sample <- sample.int(n = nrow(data), size = floor(0.95*nrow(data)), replace = T)
+sample <- sample.int(n = nrow(data), size = floor(1*nrow(data)), replace = F)
 
-training <- rev_total[sample,]
+training <- profit_total[sample,]
 testing <- data[-sample,]
 #rownames(data) <- quarters
 
 
-tsData = ts(rev_total, start = c(2011,1), frequency = 4)
+tsData = ts(profit_total, start = c(2011,1), frequency = 4)
 #tsData = ts(new_stores["nstores"], start = c(2011,1), frequency = 4)
 
 
 
 fit <- auto.arima(tsData, approximation=FALSE, trace=FALSE)
-arima_forecast = forecast(fit, h = 1)
+arima_forecast = forecast(fit, h = 10)
 accuracy(fit)
-plot(arima_forecast)
-
-arima_forecast
+plot(arima_forecast, main="Profit Forecasting", xlab="Quarter", ylab="Gross Profit, in Thousands of Dollars")
 #fit <- lm(rev_total ~ as.numeric(quarters), data=data)
 
 summary(fit)
