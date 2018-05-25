@@ -11,7 +11,7 @@ input_sheet = read_excel("financial_cleaned.xlsx", sheet=1, col_names = TRUE)
 #new dataframe
 
 # zoo sequence to name year/quarter
-quarters <- as.yearqtr(2011 + seq(0, 23)/3)
+quarters <- as.yearqtr(2010 + seq(0, 23)/3)
 format(quarters, "%Y Quarter %q")
 
 
@@ -33,17 +33,15 @@ rownames(data) <- quarters
 
 
 
-fit <- lm(rev_total ~ rev_used + rev_wholesale, data=data)
-#summary(fit)
-#x<-fitted(fit)
+fit <- lm(rev_total ~ as.numeric(quarters), data=data)
+summary(fit)
+x<-fitted(fit)
 
-#new.df <- data.frame(rev_used=c(3429247))
-#predict(fit, )
-lines(predict(fit))
+#c(data["rev_total"],rep(2011:2018))
+#plot(c(data,rep(NA,12)),xaxt="n",ylab="CPI",xlab="",ylim=c(162,190))
 
-
-year<-seq(from=2011,to=2020,by=.33)
+q <- as.numeric(quarters)
 cpi<-c(rev_total)
-df <- data.frame(year,cpi)
-plot(df)+abline(lm(df$cpi~df$year))
+df <- data.frame(q,cpi)
+plot(df)+abline(lm(df$cpi~q))
 
