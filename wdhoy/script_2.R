@@ -3,6 +3,7 @@ library(readxl)
 # allows writing of excel sheets
 library(writexl)
 library(zoo)
+library(forecast)
 
 excel_sheets('financial_recleaned.xlsx')
 excel_sheets('new_stores.xlsx')
@@ -29,13 +30,25 @@ rev_used = as.numeric(t(input_sheet[7,quarterly_indexes]))
 rev_wholesale = as.numeric(t(input_sheet[8,quarterly_indexes]))
 rev_other = as.numeric(t(input_sheet[13,quarterly_indexes]))
 rev_total = as.numeric(t(input_sheet[15,quarterly_indexes]))
-#new_stores <- as.numeric(new_stores)
+
+rev_total <- as.data.frame((rev_total))
 data <- data.frame(quarters, rev_used, rev_wholesale, rev_other, new_stores["nstores"], rev_total)
+sample <- sample.int(n = nrow(data), size = floor(1*nrow(data)), replace = F)
+
+training <- rev_total[sample,]
+testing <- data[-sample,]
 #rownames(data) <- quarters
 
 
+tsData = ts(rev_total, start = c(2011,1), frequency = 4)
+#tsData = ts(new_stores["nstores"], start = c(2011,1), frequency = 4)
 
-fit <- lm(rev_total ~ quarters + rev_used, data=data)
+
+
+fit <- auto.arima(tsData, approximation=FALSE, trace=FALSE)
+arima_forecast = forecast(fit, h = 1)
+accuracy(fit)
+plot(arima_forecast)
 #fit <- lm(rev_total ~ as.numeric(quarters), data=data)
 
 summary(fit)
@@ -58,7 +71,7 @@ cpi<-c(rev_total)
 
 quarter<-rep(1:4,4)
 
-plot(c(cpi,rep(NA,32)), xaxt="n", ylab="CPI",xlab="",ylim=c(2000000, 4500000))
+plot(c(cpi,rep(NA,32)), xaxt="n", ylab="CPI",xlab="",ylim=c(2000000, 9000000))
 #48, until 2025
 
 
@@ -69,7 +82,7 @@ plot(c(cpi,rep(NA,32)), xaxt="n", ylab="CPI",xlab="",ylim=c(2000000, 4500000))
 #olddata = data.frame(quarters)
 
 #old_data=data.frame(year=rep(c(2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025), each=3), quarter=rep(1:3,1))
-#testing=data.frame((year=new_quarters), quarter=rep(1:3,1))
+testing=data.frame((year=new_quarters), quarter=rep(1:4,1))
 
 year<-rep(2010:2025,each=4)
 #newdata=data.frame(year=rep(c(2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025), each=3), quarter=rep(1:3,1))
@@ -77,15 +90,15 @@ year<-rep(2010:2025,each=4)
 
 
 #predict(fit, newdata)
-newdata=data.frame(year=rep(c(2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025), each=4), quarter=rep(1:4,1))
-newdata <- newdata[1:31,]
+#newdata=data.frame(year=rep(c(2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025), each=4), quarter=rep(1:4,1))
+#newdata <- newdata[1:31,]
   
 
 
 
-lines(32:62, predict(
+lines(1:31, predict(
   fit,
-  newdata))
+  testing))
 year<-rep(2010:2025,each=4)
 
 axis(1,labels=paste(year,quarter,sep=" Q"),at=1:64,las=3)
