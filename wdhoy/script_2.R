@@ -5,8 +5,10 @@ library(writexl)
 library(zoo)
 
 excel_sheets('financial_recleaned.xlsx')
+excel_sheets('new_stores.xlsx')
 
 input_sheet = read_excel("financial_recleaned.xlsx", sheet=1, col_names = TRUE)
+new_stores = read_excel("new_stores.xlsx", sheet=1, col_names = TRUE)
 
 #new dataframe
 
@@ -27,13 +29,13 @@ rev_used = as.numeric(t(input_sheet[7,quarterly_indexes]))
 rev_wholesale = as.numeric(t(input_sheet[8,quarterly_indexes]))
 rev_other = as.numeric(t(input_sheet[13,quarterly_indexes]))
 rev_total = as.numeric(t(input_sheet[15,quarterly_indexes]))
-
-data <- data.frame(quarters, rev_used, rev_wholesale, rev_other, rev_total)
+#new_stores <- as.numeric(new_stores)
+data <- data.frame(quarters, rev_used, rev_wholesale, rev_other, new_stores["nstores"], rev_total)
 #rownames(data) <- quarters
 
 
 
-fit <- lm(rev_total ~ quarters + rev_used + rev_wholesale, data=data)
+fit <- lm(rev_total ~ quarters + rev_used, data=data)
 #fit <- lm(rev_total ~ as.numeric(quarters), data=data)
 
 summary(fit)
