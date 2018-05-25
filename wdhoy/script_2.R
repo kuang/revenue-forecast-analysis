@@ -39,9 +39,22 @@ x<-fitted(fit)
 
 #c(data["rev_total"],rep(2011:2018))
 #plot(c(data,rep(NA,12)),xaxt="n",ylab="CPI",xlab="",ylim=c(162,190))
+#new.df <- data.frame(rev_used=c(3429247))
+#predict(fit, )
+
 
 q <- as.numeric(quarters)
 cpi<-c(rev_total)
 df <- data.frame(q,cpi)
 plot(df)+abline(lm(df$cpi~q))
+
+newQ <- as.data.frame(quarters)
+rep(newQ)
+
+
+plot(c(cpi,rep(NA,24)),xaxt="n",ylab="CPI",xlab="",ylim=c(2000000, 4500000))
+#48, until 2025
+lines(25:48, predict(
+  fit,
+  newdata=data.frame(year=rep(c(2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025), each=3), quarter=rep(1:3,1))))
 
