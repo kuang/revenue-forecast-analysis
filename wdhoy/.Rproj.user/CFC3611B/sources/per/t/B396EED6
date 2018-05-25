@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1527262467529.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3558344943",
+    "id" : "B396EED6",
+    "lastKnownWriteTime" : 1527262456,
+    "last_content_update" : 1527262456,
+    "path" : "~/code/revenue-forecast-analysis/wdhoy/plotTesty.R",
+    "project_path" : "plotTesty.R",
+    "properties" : {
+        "cursorPosition" : "5,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

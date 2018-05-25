@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1527261754527.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1783973762",
+    "id" : "5490F299",
+    "lastKnownWriteTime" : 1527262011,
+    "last_content_update" : 1527262011266,
+    "path" : "~/code/revenue-forecast-analysis/wdhoy/new_stores.R",
+    "project_path" : "new_stores.R",
+    "properties" : {
+        "cursorPosition" : "23,33",
+        "scrollLine" : "17",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
