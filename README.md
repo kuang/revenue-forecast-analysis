@@ -1,6 +1,8 @@
-# revenue-forecast-analysis
-Current project ability: scrape all the data needed. Model is correct (checked by looking at parameters, graphing the resulting line), but predict function is not working (not extrapolating for new dates)- need help. Once that is done, we can do profit.
+# Revenue Forecast Analysis
 
-On new store side, confused on inputs to linear model (ex. setting up)- dates + num. new stores? or just num new stores?
+3 Main files (all .r)- reveneue.R, profit.R, new_stores.R. Revenue and Profit files handle creating Arima models for gross revenue and profit, respectively, while new_stores.R creates a linear regression model between the number of new stores and revenue in each quarter.
+
+Two excel files are contained. financial_recleaned.xlsx contains quarterly revenue and profit information (summarized from original financial reports), while new_stores.xlsx contains data on how many new stores were opened in the quarters that matter to us (2011-2018). 
+
 
 
