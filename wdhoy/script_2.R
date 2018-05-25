@@ -42,3 +42,8 @@ fit <- lm(rev_total ~ rev_used + rev_wholesale, data=data)
 lines(predict(fit))
 
 
+year<-seq(from=2011,to=2020,by=.33)
+cpi<-c(rev_total)
+df <- data.frame(year,cpi)
+plot(df)+abline(lm(df$cpi~df$year))
+
