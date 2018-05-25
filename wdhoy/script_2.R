@@ -55,3 +55,6 @@ arima_forecast
 
 #accuracy
 summary(fit)
+
+
+
