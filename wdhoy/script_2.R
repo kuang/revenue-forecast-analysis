@@ -23,17 +23,22 @@ for (i in 0:69) {
   }
 }
 
-rev_used = t(input_sheet[7,quarterly_indexes])  
-rev_wholesale = t(input_sheet[8,quarterly_indexes])  
-rev_other = t(input_sheet[13,quarterly_indexes])
-rev_total = t(input_sheet[15,quarterly_indexes])
+rev_used = as.numeric(t(input_sheet[7,quarterly_indexes]))
+rev_wholesale = as.numeric(t(input_sheet[8,quarterly_indexes]))
+rev_other = as.numeric(t(input_sheet[13,quarterly_indexes]))
+rev_total = as.numeric(t(input_sheet[15,quarterly_indexes]))
 
 data <- data.frame(rev_used, rev_wholesale, rev_other, rev_total)
 rownames(data) <- quarters
 
 
 
+fit <- lm(rev_total ~ rev_used + rev_wholesale, data=data)
+#summary(fit)
+#x<-fitted(fit)
 
-
+#new.df <- data.frame(rev_used=c(3429247))
+#predict(fit, )
+lines(predict(fit))
 
 
